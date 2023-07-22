@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sales.Domain.Base
 {
@@ -20,6 +21,9 @@ namespace Sales.Domain.Base
 
     public abstract class BaseEntity<TKey> : BaseEntity
     {
-        public TKey Id { get; set; }
+        [Key]
+        public TKey? Id { get; set; }
+        
+
     }
 }

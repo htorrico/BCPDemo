@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sales.Domain.Departments;
 
 namespace Sales.Infraestructure
 {
@@ -7,5 +8,7 @@ namespace Sales.Infraestructure
         public EFContext(DbContextOptions<EFContext> options) : base(options)
         {
         }
+
+        public DbSet<Department> Departments { get; set; }
     }
 }
