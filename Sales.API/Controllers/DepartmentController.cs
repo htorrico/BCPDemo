@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Sales.Domain.Departments;
+using Sales.Service.Request;
 
 namespace API.Controllers
 {
@@ -27,6 +28,12 @@ namespace API.Controllers
             var departments = await _service.SearchAsync();
             return Ok(departments);
         }
-      
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] AddDepartmentRequest request)
+        {
+            var department = await _service.AddNewAsync(request);
+            return Ok(department);
+        }
+
     }
 }
