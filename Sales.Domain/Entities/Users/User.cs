@@ -1,4 +1,5 @@
 ﻿using Sales.Domain.Base;
+using Sales.Domain.Roles;
 using System.Collections.Generic;
 
 namespace Sales.Domain.Users
@@ -13,8 +14,9 @@ namespace Sales.Domain.Users
         public string LastName { get; internal set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Address { get; set; }
-
+        public string Address { get; set; }        
+        public int RoleId { get; set; }
+        public Roles.Role Role { get; set; }
 
 
     }

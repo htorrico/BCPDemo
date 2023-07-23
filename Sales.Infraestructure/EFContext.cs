@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sales.Domain.Departments;
+using Sales.Domain.Roles;
 using Sales.Domain.Users;
 
 namespace Sales.Infraestructure
@@ -12,6 +13,7 @@ namespace Sales.Infraestructure
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Domain.Roles.Role> Roles { get; set; }
 
     }
 }
