@@ -22,11 +22,35 @@ namespace Sales.Infraestructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Sales.Domain.Agencies.Agency", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Agencies");
+                });
+
             modelBuilder.Entity("Sales.Domain.Base.BaseDomainEvent", b =>
                 {
                     b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("AgencyId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -40,16 +64,23 @@ namespace Sales.Infraestructure.Migrations
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TargetId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("EventId");
+
+                    b.HasIndex("AgencyId");
 
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("ProductId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("TargetId");
 
                     b.HasIndex("UserId");
 
@@ -128,6 +159,38 @@ namespace Sales.Infraestructure.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("Sales.Domain.Targets.Target", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Points")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("Targets");
+                });
+
             modelBuilder.Entity("Sales.Domain.Users.User", b =>
                 {
                     b.Property<int>("Id")
@@ -139,6 +202,9 @@ namespace Sales.Infraestructure.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AgencyId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DNI")
                         .IsRequired()
@@ -173,6 +239,8 @@ namespace Sales.Infraestructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AgencyId");
+
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
@@ -180,6 +248,10 @@ namespace Sales.Infraestructure.Migrations
 
             modelBuilder.Entity("Sales.Domain.Base.BaseDomainEvent", b =>
                 {
+                    b.HasOne("Sales.Domain.Agencies.Agency", null)
+                        .WithMany("Events")
+                        .HasForeignKey("AgencyId");
+
                     b.HasOne("Sales.Domain.Departments.Department", null)
                         .WithMany("Events")
                         .HasForeignKey("DepartmentId");
@@ -192,20 +264,56 @@ namespace Sales.Infraestructure.Migrations
                         .WithMany("Events")
                         .HasForeignKey("RoleId");
 
+                    b.HasOne("Sales.Domain.Targets.Target", null)
+                        .WithMany("Events")
+                        .HasForeignKey("TargetId");
+
                     b.HasOne("Sales.Domain.Users.User", null)
                         .WithMany("Events")
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("Sales.Domain.Targets.Target", b =>
+                {
+                    b.HasOne("Sales.Domain.Users.User", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Sales.Domain.Users.User", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+
+                    b.Navigation("Seller");
+                });
+
             modelBuilder.Entity("Sales.Domain.Users.User", b =>
                 {
+                    b.HasOne("Sales.Domain.Agencies.Agency", "Agency")
+                        .WithMany()
+                        .HasForeignKey("AgencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Sales.Domain.Roles.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Agency");
+
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Sales.Domain.Agencies.Agency", b =>
+                {
+                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("Sales.Domain.Departments.Department", b =>
@@ -219,6 +327,11 @@ namespace Sales.Infraestructure.Migrations
                 });
 
             modelBuilder.Entity("Sales.Domain.Roles.Role", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("Sales.Domain.Targets.Target", b =>
                 {
                     b.Navigation("Events");
                 });
