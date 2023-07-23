@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Sales.Infraestructure.Repositories;
 using Sales.Infraestructure;
 using Sales.Services;
+using Sales.Domain.Roles;
 
 namespace Sales.API.Extensions
 {
@@ -15,9 +16,9 @@ namespace Sales.API.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             return services
-                .AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>))
-                //.AddScoped<IUserRepository, UserRepository>()
-                .AddScoped<IDepartmentRepository, DepartmentRepository>();
+                .AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>))                
+                .AddScoped<IDepartmentRepository, DepartmentRepository>()
+                .AddScoped<IRoleRepository, RoleRepository>();
         }
 
         public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
@@ -37,7 +38,9 @@ namespace Sales.API.Extensions
            )
         {
             return services
-                .AddScoped<DepartmentService>();
+                .AddScoped<DepartmentService>().
+                AddScoped<RoleService>()
+                ;
         }
     }
 }
