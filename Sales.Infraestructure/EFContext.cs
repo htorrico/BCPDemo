@@ -20,6 +20,7 @@ namespace Sales.Infraestructure
         public DbSet<Product> Products { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Target> Targets { get; set; }
+        public DbSet<Target> Sales { get; set; }
 
     }
 }
