@@ -26,12 +26,12 @@ namespace Sales.API.Extensions
                 .AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
-        public static IServiceCollection AddDatabase(this IServiceCollection services
-            , IConfiguration configuration)
-        {
-            return services.AddDbContext<EFContext>(options =>
-                     options.UseSqlServer(configuration.GetConnectionString("DDDConnectionString")));
-        }
+        //public static IServiceCollection AddDatabase(this IServiceCollection services
+        //    , IConfiguration configuration)
+        //{
+        //    return services.AddDbContext<EFContext>(options =>
+        //             options.UseSqlServer(configuration.GetConnectionString("DDDConnectionString")));
+        //}
 
         public static IServiceCollection AddBusinessServices(this IServiceCollection services
            )

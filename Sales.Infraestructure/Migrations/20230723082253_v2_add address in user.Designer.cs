@@ -12,18 +12,17 @@ using Sales.Infraestructure;
 namespace Sales.Infraestructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230722215433_v1")]
-    partial class v1
+    [Migration("20230723082253_v2_add address in user")]
+    partial class v2_addaddressinuser
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "6.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Sales.Domain.Base.BaseDomainEvent", b =>
                 {
@@ -37,9 +36,14 @@ namespace Sales.Infraestructure.Migrations
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("EventId");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("BaseDomainEvent");
                 });
@@ -50,7 +54,7 @@ namespace Sales.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -65,14 +69,68 @@ namespace Sales.Infraestructure.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("Sales.Domain.Users.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DNI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Sales.Domain.Base.BaseDomainEvent", b =>
                 {
                     b.HasOne("Sales.Domain.Departments.Department", null)
                         .WithMany("Events")
                         .HasForeignKey("DepartmentId");
+
+                    b.HasOne("Sales.Domain.Users.User", null)
+                        .WithMany("Events")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Sales.Domain.Departments.Department", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("Sales.Domain.Users.User", b =>
                 {
                     b.Navigation("Events");
                 });

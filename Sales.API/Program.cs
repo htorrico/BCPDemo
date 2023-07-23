@@ -15,8 +15,6 @@ builder.Services
                 .AddRepositories()
                 .AddBusinessServices();
 
-
-
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles); ;
 
