@@ -3,6 +3,7 @@ using Sales.Domain.Agencies;
 using Sales.Domain.Departments;
 using Sales.Domain.Products;
 using Sales.Domain.Roles;
+using Sales.Domain.Sales;
 using Sales.Domain.Targets;
 using Sales.Domain.Users;
 
@@ -20,7 +21,7 @@ namespace Sales.Infraestructure
         public DbSet<Product> Products { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Target> Targets { get; set; }
-        public DbSet<Target> Sales { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
     }
 }

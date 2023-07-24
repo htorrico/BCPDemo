@@ -14,5 +14,11 @@ namespace Sales.Service.Helpers
             Manager=2,
             Seller=3
         }
+
+        public enum ProductType : int
+        {
+            Card = 1,
+            Credit = 2            
+        }
     }
 }
