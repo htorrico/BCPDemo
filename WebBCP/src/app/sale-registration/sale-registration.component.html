@@ -9,7 +9,7 @@
     <div class="form-group">
       <label for="seller">Vendedor:</label>
       <select id="seller" name="seller" [(ngModel)]="selectedSeller">
-        <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.name }}</option>
+        <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.firstName }}</option>
       </select>
     </div>
     <div class="form-group">

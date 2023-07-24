@@ -34,8 +34,8 @@ export class SaleRegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.getCustomers();
-    // this.getSellers();
-    // this.getProducts();
+    this.getSellers();
+    this.getProducts();
   }
 
   getCustomers() {

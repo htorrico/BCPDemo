@@ -1,5 +1,5 @@
 export interface Seller {
     id: number;
-    name: string;    
+    firstName: string;    
   }
   
