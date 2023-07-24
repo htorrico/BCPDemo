@@ -11,14 +11,14 @@ namespace Sales.Domain.Users
         }
 
         public User(string userName, string password,int documentType,string documentNumber  , string firstName,
-            string lastName, string email, string phone) : this()
+            string lastName, string email, string phone,string address, int roleId, int agencyId) : this()
         {
             this.Update( userName,  password,  documentType,documentNumber,  firstName,
-            lastName,  email,  phone);
+            lastName,  email,  phone, address, roleId,agencyId);
         }
 
         public void Update(string userName, string password, int documentType, string documentNumber, string firstName,
-            string lastName, string email, string phone)
+            string lastName, string email, string phone, string address, int roleId, int agencyId)
         {
             UserName= userName;
             Password= password;
@@ -27,7 +27,10 @@ namespace Sales.Domain.Users
             FirstName= firstName;
             LastName= lastName;
             Email= email;
-            Phone = phone;            
+            Phone = phone;     
+            RoleId= roleId;
+            AgencyId= agencyId;
+            Address = address;
         }
 
 

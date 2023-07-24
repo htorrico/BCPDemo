@@ -11,6 +11,7 @@ using Sales.Domain.Roles;
 using Sales.Domain.Agencies;
 using Sales.Domain.Products;
 using Sales.Domain.Targets;
+using Sales.Domain.Users;
 
 namespace Sales.API.Extensions
 {
@@ -24,7 +25,8 @@ namespace Sales.API.Extensions
                 .AddScoped<IRoleRepository, RoleRepository>()
                 .AddScoped<IAgencyRepository, AgencyRepository>()
                 .AddScoped<IProductRepository, ProductRepository>()
-                .AddScoped<ITargetRepository, TargetRepository>();
+                .AddScoped<ITargetRepository, TargetRepository>()
+                .AddScoped<IUserRepository, UserRepository>();
         }
 
         public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
@@ -49,6 +51,7 @@ namespace Sales.API.Extensions
                 .AddScoped<AgencyService>()
                 .AddScoped<ProductService>()
                 .AddScoped<TargetService>()
+                .AddScoped<UserService>()
                 ;
         }
     }
