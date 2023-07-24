@@ -88,9 +88,9 @@ namespace Sales.Services
 
             var response = list.Select(_ => new UserResponse()
             {
-                //Id=_.Id,
-                //Name= _.Name,
-                //Description= _.Description
+                Id = _.Id,
+                FirstName = _.FirstName,
+                LastName = _.LastName                
             })
             .ToList();
             return response;
