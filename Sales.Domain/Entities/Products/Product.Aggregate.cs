@@ -15,15 +15,7 @@ namespace Sales.Domain.Products
         {
             //Users = new HashSet<User>();
         }
-
-        //public string Name { get; set; }
-        //public string Description { get; set; }
-
-        //public int ProductType { get; set; }
-        //public decimal Percent { get; set; }
-        //public decimal Points { get; set; }
-
-
+        
         public Product(string name,string description, int productType, decimal percent, decimal points) : this()
         {
             this.Update(name, description,productType, percent, points);
