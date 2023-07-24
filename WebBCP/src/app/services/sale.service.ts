@@ -13,6 +13,6 @@ export class SaleService {
   constructor(private http: HttpClient) { }
 
   saveSale(saleData: Sale): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/Sale/Add`, saleData);
+    return this.http.post<any>(`${this.apiUrl}/Api/Sale/Add`, saleData);
   }
 }

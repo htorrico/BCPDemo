@@ -77,8 +77,10 @@ export class SaleRegistrationComponent implements OnInit {
         customerId: this.selectedCustomer,
         sellerId: this.selectedSeller,
         productId: this.selectedProduct,
-        amount: this.amount        
+        amount: this.amount
       };
+
+      console.log(saleData);
 
       this.saleService.saveSale(saleData).subscribe(
         (response) => {

@@ -8,8 +8,12 @@ import { SellerSelectComponent } from './seller-select/seller-select.component';
 import { ProductSelectComponent } from './product-select/product-select.component';
 import { SaleRegistrationComponent } from './sale-registration/sale-registration.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptorService } from './interceptors/authInterceptorService';
+import { LoginComponent } from './login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     CustomerSelectComponent,
     SellerSelectComponent,
     ProductSelectComponent,
-    SaleRegistrationComponent
+    SaleRegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,13 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
