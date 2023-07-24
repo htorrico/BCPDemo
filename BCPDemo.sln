@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Infraestructure", "Sa
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WebBCP", "WebBCP\WebBCP.esproj", "{0270B640-7F8A-430E-B736-49DA8F22FDF7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayDemo", "GatewayDemo\GatewayDemo.csproj", "{56132292-8162-4CA4-8BCA-741F3E70316E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{0270B640-7F8A-430E-B736-49DA8F22FDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0270B640-7F8A-430E-B736-49DA8F22FDF7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0270B640-7F8A-430E-B736-49DA8F22FDF7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{56132292-8162-4CA4-8BCA-741F3E70316E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56132292-8162-4CA4-8BCA-741F3E70316E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56132292-8162-4CA4-8BCA-741F3E70316E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56132292-8162-4CA4-8BCA-741F3E70316E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{0DB22B53-C279-4237-8677-044EDFC65751} = {72E9AE4E-48C6-4F6F-B84A-4838FCC265B0}
 		{C42E26C3-A2DF-40F0-90EE-C6C29ED93D77} = {72E9AE4E-48C6-4F6F-B84A-4838FCC265B0}
 		{0270B640-7F8A-430E-B736-49DA8F22FDF7} = {B1D03081-F85F-48C4-9AEE-DEA13E6F2F62}
+		{56132292-8162-4CA4-8BCA-741F3E70316E} = {7DD2F058-DB44-49B5-AD22-42F88043C391}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5228D798-0E0B-470A-AA4A-D0DED21031C2}
