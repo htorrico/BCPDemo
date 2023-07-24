@@ -33,7 +33,7 @@ export class SaleRegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getCustomers();
+    this.getCustomers();
     // this.getSellers();
     // this.getProducts();
   }

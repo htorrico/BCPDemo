@@ -14,6 +14,6 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.apiUrl}/customers`);
+    return this.http.get<Customer[]>(`${this.apiUrl}/api/User/GetCustomer`);
   }
 }
