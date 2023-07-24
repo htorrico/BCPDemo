@@ -1,0 +1,28 @@
+<div class="sale-registration">
+    <h2>Registrar Venta</h2>
+    <div class="form-group">
+      <label for="customer">Cliente:</label>
+      <select id="customer" name="customer" [(ngModel)]="selectedCustomer">
+        <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.firstName }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="seller">Vendedor:</label>
+      <select id="seller" name="seller" [(ngModel)]="selectedSeller">
+        <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.firstName }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="product">Producto:</label>
+      <select id="product" name="product" [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">Cantidad:</label>
+      <input type="number" id="amount" name="amount" [(ngModel)]="amount" required>
+    </div>    
+    <button (click)="saveSale()">Guardar</button>
+    <div *ngIf="confirmationMessage" class="confirmation-message">{{ confirmationMessage }}</div>
+  </div>
+  

@@ -12,7 +12,21 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200",
+                                              "http://www.hugotorrico.com")
+                                              .AllowAnyHeader()
+                                              .AllowAnyMethod();
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddAuthentication(options =>
@@ -70,6 +84,8 @@ var app = builder.Build();
 
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -80,7 +96,7 @@ app.MapControllers();
 app.MapPost("/security/createToken",
 [AllowAnonymous] (LoginUserRequest user) =>
 {
-
+    //Llamar a la capa de servicio
     if (user.UserName == "htorrico" && user.Password == "123456")
     {
 

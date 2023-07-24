@@ -28,6 +28,25 @@ namespace API.Controllers
             var response = await _service.SearchAsync();
             return Ok(response);
         }
+        [HttpGet("GetSeller")]
+        public async Task<IActionResult> GetSeller()
+        {
+            var response = await _service.SearchSellerAsync();
+            return Ok(response);
+        }
+        [HttpGet("GetCustomer")]
+        public async Task<IActionResult> GetCustomer()
+        {
+            var response = await _service.SearchCustomerAsync();
+            return Ok(response);
+        }
+
+        [HttpGet("GetManager")]
+        public async Task<IActionResult> GetManager()
+        {
+            var response = await _service.SearchManagerAsync();
+            return Ok(response);
+        }
         [HttpPost("AddCustomer")]
         public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
