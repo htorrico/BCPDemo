@@ -8,9 +8,6 @@ namespace Sales.Service.Response
 {
     public class AddTargetResponse
     {
-        public int Id { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public decimal Points { get; set; }
+        public int Id { get; set; }        
     }
 }

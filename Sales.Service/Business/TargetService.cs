@@ -20,7 +20,7 @@ namespace Sales.Services
         public async Task<AddTargetResponse> AddNewAsync(AddTargetRequest model)
         {
             // You can you some mapping tools as such as AutoMapper
-            var Target = new Target(model.ManagerId,model.SellerId,model.Year,model.Month,model.Points );
+            var Target = new Target(model.ManagerId,model.SellerId,model.Year,model.Month,model.MinimumPoints );
 
             var repository = UnitOfWork.AsyncRepository<Target>();
             await repository.AddAsync(Target);

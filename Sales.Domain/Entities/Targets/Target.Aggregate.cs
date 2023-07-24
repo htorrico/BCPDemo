@@ -15,17 +15,18 @@ namespace Sales.Domain.Targets
             //Users = new HashSet<User>();
         }
 
-        public Target(int managerId,int sellerId,int year, int month, decimal points) : this()
+        public Target(int managerId,int sellerId,int year, int month, decimal minimumPoints) : this()
         {
-            this.Update(managerId,sellerId, year,month,points);
+            this.Update(managerId,sellerId, year,month, minimumPoints);
         }
 
-        public void Update(int managerId,int sellerId,int year, int month, decimal points)
+        public void Update(int managerId,int sellerId,int year, int month, decimal minimumPoints)
         {
             ManagerId = managerId;
             SellerId = sellerId;
             Year = year;
             Month = month;
+            MinimumPoints= minimumPoints;
             
         }
 
