@@ -41,8 +41,9 @@ namespace Sales.Services
 
             var response = list.Select(_ => new RoleResponse()
             {
+                Id=_.Id,
                 Name= _.Name,
-                Description= _.Description,
+                Description= _.Description
             })
             .ToList();
             return response;

@@ -17,7 +17,7 @@ namespace Sales.Domain.Targets
         public int SellerId { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }        
-        public decimal Points { get; set; }
+        public decimal MinimumPoints { get; set; }
 
         
 

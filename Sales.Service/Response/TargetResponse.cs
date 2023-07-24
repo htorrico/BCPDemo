@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Sales.Service.Response
 {
-    public class RoleResponse
+    public class TargetResponse
     {
+
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public decimal MinimumPoints { get; set; }
+
     }
 }

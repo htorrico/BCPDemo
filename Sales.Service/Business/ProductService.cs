@@ -41,6 +41,7 @@ namespace Sales.Services
 
             var response = list.Select(_ => new ProductResponse()
             {
+                Id=_.Id,
                 Name= _.Name,
                 Description= _.Description,
             })

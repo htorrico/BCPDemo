@@ -10,19 +10,20 @@ namespace Sales.Domain.Users
             //Users = new HashSet<User>();
         }
 
-        public User(string userName, string password, string dni, string firstName,
+        public User(string userName, string password,int documentType,string documentNumber  , string firstName,
             string lastName, string email, string phone) : this()
         {
-            this.Update( userName,  password,  dni,  firstName,
+            this.Update( userName,  password,  documentType,documentNumber,  firstName,
             lastName,  email,  phone);
         }
 
-        public void Update(string userName, string password, string dni, string firstName,
+        public void Update(string userName, string password, int documentType, string documentNumber, string firstName,
             string lastName, string email, string phone)
         {
             UserName= userName;
             Password= password;
-            DNI= dni;
+            DocumentType= documentType;
+            DocumentNumber = documentNumber;
             FirstName= firstName;
             LastName= lastName;
             Email= email;
