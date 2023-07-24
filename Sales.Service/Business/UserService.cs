@@ -95,7 +95,54 @@ namespace Sales.Services
             .ToList();
             return response;
         }
+        public async Task<List<UserResponse>> SearchCustomerAsync()
+        {
+            var repository = UnitOfWork.AsyncRepository<User>();
+            var list = await repository
+                .ListAsync(x=>x.RoleId==(int)Enums.Role.Customer);
 
-        
+            var response = list.Select(_ => new UserResponse()
+            {
+                Id = _.Id,
+                FirstName = _.FirstName,
+                LastName = _.LastName
+            })
+            .ToList();
+            return response;
+        }
+
+        public async Task<List<UserResponse>> SearchSellerAsync()
+        {
+            var repository = UnitOfWork.AsyncRepository<User>();
+            var list = await repository
+                .ListAsync(x => x.RoleId == (int)Enums.Role.Seller);
+
+            var response = list.Select(_ => new UserResponse()
+            {
+                Id = _.Id,
+                FirstName = _.FirstName,
+                LastName = _.LastName
+            })
+            .ToList();
+            return response;
+        }
+
+        public async Task<List<UserResponse>> SearchManagerAsync()
+        {
+            var repository = UnitOfWork.AsyncRepository<User>();
+            var list = await repository
+                .ListAsync(x => x.RoleId == (int)Enums.Role.Manager);
+
+            var response = list.Select(_ => new UserResponse()
+            {
+                Id = _.Id,
+                FirstName = _.FirstName,
+                LastName = _.LastName
+            })
+            .ToList();
+            return response;
+        }
+
+
     }
 }

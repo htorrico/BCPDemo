@@ -8,6 +8,7 @@ import { SellerSelectComponent } from './seller-select/seller-select.component';
 import { ProductSelectComponent } from './product-select/product-select.component';
 import { SaleRegistrationComponent } from './sale-registration/sale-registration.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
