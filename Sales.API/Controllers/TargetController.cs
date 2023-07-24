@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Sales.Domain.Roles;
 using Sales.Service.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -28,6 +29,8 @@ namespace API.Controllers
             var response = await _service.SearchAsync();
             return Ok(response);
         }
+
+        [Authorize()]
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] AddTargetRequest request)
         {
