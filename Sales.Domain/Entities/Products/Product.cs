@@ -16,7 +16,5 @@ namespace Sales.Domain.Products
         public decimal Percent { get; set; }
         public decimal Points { get; set; }
 
-
-
     }
 }

@@ -39,6 +39,10 @@ namespace Sales.Infraestructure.Repositories
         {
             return _dbSet.Where(expression).ToListAsync();
         }
+        public Task<List<T>> ListAllAsync()
+        {
+            return _dbSet.ToListAsync();
+        }
 
         public Task<T> UpdateAsync(T entity)
         {

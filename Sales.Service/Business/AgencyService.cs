@@ -1,6 +1,6 @@
 ﻿//using API.DTOs.Users;
 using Sales.Domain.Interfaces;
-using Sales.Domain.Roles;
+using Sales.Domain.Agencies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,35 +11,35 @@ using Sales.Service.Request;
 
 namespace Sales.Services
 {
-    public class RoleService : BaseService
+    public class AgencyService : BaseService
     {
-        public RoleService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public AgencyService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
 
-        public async Task<AddRoleResponse> AddNewAsync(AddRoleRequest model)
+        public async Task<AddAgencyResponse> AddNewAsync(AddAgencyRequest model)
         {
             // You can you some mapping tools as such as AutoMapper
-            var Role = new Role( model.Name, model.Description);
+            var Agency = new Agency( model.Name, model.Description);
 
-            var repository = UnitOfWork.AsyncRepository<Role>();
-            await repository.AddAsync(Role);
+            var repository = UnitOfWork.AsyncRepository<Agency>();
+            await repository.AddAsync(Agency);
             await UnitOfWork.SaveChangesAsync();
 
-            var response = new AddRoleResponse()
+            var response = new AddAgencyResponse()
             {
-                Id = Role.Id,                
+                Id = Agency.Id,                
             };
 
             return response;
         }
-        public async Task<List<RoleResponse>> SearchAsync()
+        public async Task<List<AgencyResponse>> SearchAsync()
         {
-            var repository = UnitOfWork.AsyncRepository<Role>();
+            var repository = UnitOfWork.AsyncRepository<Agency>();
             var list = await repository
                 .ListAllAsync();
 
-            var response = list.Select(_ => new RoleResponse()
+            var response = list.Select(_ => new AgencyResponse()
             {
                 Name= _.Name,
                 Description= _.Description,
